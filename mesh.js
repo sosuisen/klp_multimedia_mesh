@@ -6,7 +6,7 @@ document.body.appendChild(app.view);
 /**
  * ねこ本体
  */
-const catTx = await PIXI.Assets.load('cat_notail_ear.png');
+const catTx = await PIXI.Assets.load('assets/cat_notail_ear.png');
 const cat = PIXI.Sprite.from(catTx);
 cat.interactive = true;
 const hitArea = new PIXI.Rectangle(100, 110, 150, 60);
@@ -33,7 +33,7 @@ const points = [];
 for (let i = 0; i < pointNum; i++) {
     points.push(new PIXI.Point(i * ropeLength, 0));
 }
-const tailTx = await PIXI.Assets.load('tail.png');
+const tailTx = await PIXI.Assets.load('assets/tail.png');
 const tail = new PIXI.SimpleRope(tailTx, points);
 tail.position.set(302, 467);
 app.stage.addChild(tail);
@@ -45,7 +45,7 @@ app.stage.addChild(tail);
 // これ以上頂点数を増やすなら、アニメーションのほうも考え直す必要あり。
 const verticesX = 2;
 const verticesY = 2;
-const earTx = await PIXI.Assets.load('ear.png');
+const earTx = await PIXI.Assets.load('assets/ear.png');
 const ear = new PIXI.SimplePlane(earTx, verticesX, verticesY);
 ear.position.set(90, 92);
 app.stage.addChild(ear);
