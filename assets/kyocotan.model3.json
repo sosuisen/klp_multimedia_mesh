@@ -1,14 +1,14 @@
 {
 	"Version": 3,
 	"FileReferences": {
-		"Moc": "kyocotan_official_15_large.moc3",
+		"Moc": "kyocotan.moc3",
 		"Textures": [
-			"kyocotan_official_15_large.1024/texture_00.png"
+			"texture_00.png"
 		],
 		"Motions": {
-      "Idle": [
+			"Idle": [
 				{
-					"File": "maegami_m01.motion3.json"
+					"File": "kyocotan.motion3.json"
 				}
 			]
 		}

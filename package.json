@@ -11,7 +11,6 @@
     "vite": "^4.1.0"
   },
   "dependencies": {
-    "gsap": "^3.11.4",
     "pixi-live2d-display": "^0.4.0",
     "pixi.js": "^6.5.10"
   }
