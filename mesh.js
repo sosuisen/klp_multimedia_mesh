@@ -35,6 +35,7 @@ for (let i = 0; i < pointNum; i++) {
 }
 const tailTx = await PIXI.Assets.load('assets/tail.png');
 const tail = new PIXI.SimpleRope(tailTx, points);
+// SimpleRopeの基準点はXが左端でYが中央。
 tail.position.set(302, 467);
 app.stage.addChild(tail);
 
