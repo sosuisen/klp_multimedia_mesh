@@ -56,6 +56,21 @@ app.stage.addChild(ear);
 // 正しい値がとれないため注意。
 const positionsOrg = [...ear.geometry.buffers[0].data];
 
+
+/**
+ * ねこじゃらし
+ */
+const jPointNum = 4;
+const jRopeLength = 240 / (jPointNum - 1);
+const jPoints = [];
+for (let i = 0; i < jPointNum; i++) {
+    jPoints.push(new PIXI.Point(jRopeLength * i, 0));
+}
+const jarashiTx = await PIXI.Assets.load('assets/jarashi.png');
+const jarashi = new PIXI.SimpleRope(jarashiTx, jPoints);
+jarashi.position.set(150, 100);
+app.stage.addChild(jarashi);
+
 /**
  * インタラクション
  */
@@ -86,6 +101,11 @@ app.ticker.add(() => {
         points[i].y = Math.sin(count) * i;
     }
 
+    // ねこじゃらし
+    for (let i = 0; i < jPoints.length-1; i++) {
+        jPoints[i].y = Math.sin(count) * (jPoints.length - i) * 3
+    }
+    
     if (isMouseOnCat) {
         // 耳
         // 頂点座標は次のプロパティに格納
@@ -183,3 +203,4 @@ function renderGuide() {
     }
 
 }
+
