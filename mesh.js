@@ -8,7 +8,7 @@ document.body.appendChild(app.view);
  */
 const catTx = await PIXI.Assets.load('assets/cat_notail_ear.png');
 const cat = PIXI.Sprite.from(catTx);
-cat.interactive = true;
+cat.eventMode = 'static';
 const hitArea = new PIXI.Rectangle(100, 110, 150, 60);
 cat.hitArea = hitArea;
 
