@@ -134,12 +134,11 @@ earG.y = ear.y;
 app.stage.addChild(earG);
 
 function renderGuide() {
-    // しっぽのポイント表示
+    // しっぽのロープの表示
     tailG.clear();
-
     tailG.lineStyle(2, 0xffc2c2);
-    tailG.moveTo(points[0].x, points[0].y);
 
+    tailG.moveTo(points[0].x, points[0].y);
     for (let i = 1; i < points.length; i++) {
         tailG.lineTo(points[i].x, points[i].y);
     }
@@ -180,31 +179,30 @@ function renderGuide() {
         tailG.endFill();
     }
 
-
-    // 耳のポイント表示
-    const positions = ear.geometry.buffers[0].data;
-    const earPoints = [];
-    // 使いやすいようにPointの配列にしておく
-    for (let i = 0; i < positions.length; i += 2) {
-        earPoints.push(new PIXI.Point(positions[i], positions[i + 1]));
-    }
-
-    // 頂点インデックス（どの頂点を順に結んでポリゴンを作るかの情報）を取得
-    const index = ear.geometry.getIndex().data;
-
+    // 耳のメッシュ頂点の表示
     earG.clear();
     earG.lineStyle(2, 0xc2ffc2);
 
-    for (let i = 0; i < index.length; i++) {
+    const earPositions = ear.geometry.buffers[0].data;
+    const earPoints = [];
+    // 使いやすいようにPointの配列にしておく
+    for (let i = 0; i < earPositions.length; i += 2) {
+        earPoints.push(new PIXI.Point(earPositions[i], earPositions[i + 1]));
+    }
+
+    // 頂点インデックス（どの頂点を順に結んでポリゴンを作るかの情報）を取得
+    const earIndex = ear.geometry.getIndex().data;
+
+    for (let i = 0; i < earIndex.length; i++) {
         if (i % 3 === 0) {
-            earG.moveTo(earPoints[index[i]].x, earPoints[index[i]].y);
+            earG.moveTo(earPoints[earIndex[i]].x, earPoints[earIndex[i]].y);
         }
         else {
-            earG.lineTo(earPoints[index[i]].x, earPoints[index[i]].y);
+            earG.lineTo(earPoints[earIndex[i]].x, earPoints[earIndex[i]].y);
         }
         if (i % 3 === 2) {
             // 三角形を閉じる
-            earG.lineTo(earPoints[index[i - 2]].x, earPoints[index[i - 2]].y);
+            earG.lineTo(earPoints[earIndex[i - 2]].x, earPoints[earIndex[i - 2]].y);
         }
     }
 
