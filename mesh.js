@@ -150,6 +150,37 @@ function renderGuide() {
         tailG.endFill();
     }
 
+    // SimpleRopeで自動生成されたメッシュの表示
+    const tailPositions = tail.geometry.buffers[0].data;
+    const tailPoints = [];
+    // 使いやすいようにPointの配列にしておく
+    for (let i = 0; i < tailPositions.length; i += 2) {
+        tailPoints.push(new PIXI.Point(tailPositions[i], tailPositions[i + 1]));
+    }
+
+    // 頂点インデックス（どの頂点を順に結んでポリゴンを作るかの情報）を取得
+    const tailIndex = tail.geometry.getIndex().data;
+
+    for (let i = 0; i < tailIndex.length; i++) {
+        if (i % 3 === 0) {
+            tailG.moveTo(tailPoints[tailIndex[i]].x, tailPoints[tailIndex[i]].y);
+        }
+        else {
+            tailG.lineTo(tailPoints[tailIndex[i]].x, tailPoints[tailIndex[i]].y);
+        }
+        if (i % 3 === 2) {
+            // 三角形を閉じる
+            tailG.lineTo(tailPoints[tailIndex[i - 2]].x, tailPoints[tailIndex[i - 2]].y);
+        }
+    }
+
+    for (let i = 0; i < tailPoints.length; i++) {
+        tailG.beginFill(0x00ff22);
+        tailG.drawCircle(tailPoints[i].x, tailPoints[i].y, 10);
+        tailG.endFill();
+    }
+
+
     // 耳のポイント表示
     const positions = ear.geometry.buffers[0].data;
     const earPoints = [];
