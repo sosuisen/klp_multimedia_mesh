@@ -157,7 +157,7 @@ function renderGuide() {
         tailPoints.push(new PIXI.Point(tailPositions[i], tailPositions[i + 1]));
     }
 
-    // 頂点インデックス（どの頂点を順に結んでポリゴンを作るかの情報）を取得
+    // インデックスバッファを取得
     const tailIndex = tail.geometry.getIndex().data;
 
     for (let i = 0; i < tailIndex.length; i++) {
@@ -190,7 +190,7 @@ function renderGuide() {
         earPoints.push(new PIXI.Point(earPositions[i], earPositions[i + 1]));
     }
 
-    // 頂点インデックス（どの頂点を順に結んでポリゴンを作るかの情報）を取得
+    // インデックスバッファを取得
     const earIndex = ear.geometry.getIndex().data;
 
     for (let i = 0; i < earIndex.length; i++) {
